@@ -8,6 +8,7 @@
     <title>@yield('title')</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+
     @stack('costum-css')
 </head>
 
@@ -31,15 +32,8 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                                    aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i>
-                                    {{ Auth::user()->name }} <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a>Level: {{ Auth::user()->role }}</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('actionlogout') }}"><i class="fa fa-power-off"></i> Log
-                                            Out</a></li>
-                                </ul>
+                                <a href="{{ route('actionlogout') }}"><i class="fa fa-power-off"></i> Log
+                                    Out</a>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -48,12 +42,13 @@
             @yield('konten')
         </div>
     </div>
-    <!-- Bootstrap 5 -->
+
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.bootstrap5.js"></script>
     @stack('costum-script')
 </body>
 
