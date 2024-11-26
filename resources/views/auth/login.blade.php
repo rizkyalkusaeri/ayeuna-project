@@ -12,7 +12,7 @@
 <body>
     <div class="container form-sign"><br>
         <div class="col-md-4 col-md-offset-4">
-            <h3 class="text-center"><b>Verifikasi NIK</b><br>Perhitungan Suara Arfi Yena</h3>
+            <h3 class="text-center"><b>Verifikasi Masuk Sistem</b><br>AYEUNA (Arfi-Yena)</h3>
             <hr>
             @if (session('error'))
                 <div class="alert alert-danger">

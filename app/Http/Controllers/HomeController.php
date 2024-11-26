@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -18,7 +19,7 @@ class HomeController extends Controller
         if (Auth::user()->role == 'admin') {
             $data = User::all();
             $link = Link::findOrFail(1);
-            return view('home.admin', compact('data','link'));
+            return view('home.admin', compact('data', 'link'));
         } else {
             return view('home.index');
         }
@@ -60,7 +61,51 @@ class HomeController extends Controller
         } catch (\Exception $e) {
             // Handle the exception, e.g., log the error and redirect to an error page
             Log::error($e);
-            return redirect()->back()->with('error', 'An error occurred during the import process.');
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'nik' => 'required',
+            'nama' => 'required',
+            'tps' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+        ]);
+
+        try {
+            // Save data to the database
+            User::create([
+                'name' => $request->nama,
+                'email' => $request->nik,
+                'role' => 'user',
+                'password' => Hash::make($request->nik),
+                'tps' => $request->tps,
+                'kelurahan' => $request->kelurahan,
+                'kecamatan' => $request->kecamatan,
+            ]);
+
+            return redirect()->back()->with('success', 'Data has been saved successfully!');
+        } catch (\Exception $e) {
+            // Handle the exception, e.g., log the error and redirect to an error page
+            Log::error($e);
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+
+            return redirect()->back()->with('success', 'Data has been deleted successfully!');
+        } catch (\Exception $e) {
+            // Handle the exception, e.g., log the error and redirect to an error page
+            Log::error($e);
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
