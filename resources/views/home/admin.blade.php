@@ -6,9 +6,6 @@
     <h4>Selamat Datang <b>{{ Auth::user()->name }}</b></h4>
     <h4>Anda tercatat sebagai admin di <b>
             Sistem</b></h4>
-    <br>
-
-    <h3 class="font-bold">Silahkan import data user disini</h3>
 
     @if (session('success'))
         <div class="alert alert-success" role="alert">
@@ -31,10 +28,27 @@
         </div>
     @endif
 
+    <br>
+    <h4 class="font-bold"><b>Update Link Untuk Diakses Relawan Disini</b></h4>
+
+    <form action="{{ route('update_link') }}" method="POST">
+        @csrf
+        @method('PUT')
+        <div class="mb-3">
+            {{-- <label for="link" class="form-label">Link yang akan diakses oleh relawan</label> --}}
+            <input class="form-control" type="text" id="link" name="link" value="{{ $link->link }}" required>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+
+    <br>
+    <h4 class="font-bold"><b>Silahkan import data user disini</b></h4>
+
     <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <label for="file" class="form-label">File excel</label>
+            {{-- <label for="file" class="form-label">File excel</label> --}}
             <input class="form-control" type="file" id="file" name="file" required>
         </div>
         <br>

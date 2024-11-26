@@ -13,3 +13,5 @@ Route::get('home', [HomeController::class, 'index'])->name('home')->middleware('
 Route::get('go_absen', [HomeController::class, 'go_absen'])->name('go_absen')->middleware('auth');
 Route::get('go_isi', [HomeController::class, 'go_isi'])->name('go_isi')->middleware('auth');
 Route::post('import', [HomeController::class, 'import'])->name('import')->middleware('auth');
+Route::get('go_link', [HomeController::class, 'go_link'])->name('go_link')->middleware('auth');
+Route::put('update_link', [HomeController::class, 'update_link'])->name('update_link')->middleware('auth');

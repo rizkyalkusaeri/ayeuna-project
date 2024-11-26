@@ -8,12 +8,16 @@
             {{ Auth::user()->kecamatan }}</b></h4>
     <br>
 
-    <h3 class="font-bold">Panduan Pengisian Rekapitulasi</h3>
-    <ul class="list-group">
-        <li class="list-group-item">Langkah 1: Anda harus melakukan absen di pagi hari dengan mengisi link berikut <a
-                href="{{ route('go_absen') }}" target="__blank"><b>Klik disini</b></a> </li>
-        <li class="list-group-item">Langkah 2: Anda harus mengisi Pengisian Hasil Suara pada link berikut <a
-                href="{{ route('go_isi') }}" target="__blank"><b>Klik disini</b></a></li>
-        <li class="list-group-item">Langkah 3: Selesai</li>
-    </ul>
+    <h3 class="font-bold">Anda akan diarahkan ke link dalam waktu 3 detik</h3>
+
 @endsection
+@push('costum-script')
+    <script>
+        $(document).ready(function() {
+            // Redirect after 3 seconds (3000 milliseconds)
+            setTimeout(function() {
+                window.location.href = "{{ route('go_link') }}";
+            }, 3000);
+        });
+    </script>
+@endpush
