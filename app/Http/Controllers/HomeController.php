@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     public function go_absen()
     {
-        $link = Crypt::encrypt('https://ee.kobotoolbox.org/x/16aAw4kS');
+        $link = Crypt::encrypt('https://ee.kobotoolbox.org/x/fawc4PrB');
         $link_absensi = Crypt::decrypt($link);
 
         return redirect()->away($link_absensi);

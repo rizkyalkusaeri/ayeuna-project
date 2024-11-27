@@ -12,7 +12,7 @@ class LoginController extends Controller
     public function login()
     {
         if (Auth::check()) {
-            return redirect('home');
+            return redirect()->route('home');
         } else {
             return view('auth.login');
         }
@@ -29,20 +29,20 @@ class LoginController extends Controller
             ];
 
             if (Auth::Attempt($data)) {
-                return redirect('home');
+                return redirect()->route('home');
             } else {
                 Session::flash('error', 'Maaf NIK anda tidak terdaftar di sistem');
-                return redirect('/');
+                return redirect()->back();
             }
         } else {
             Session::flash('error', 'Maaf NIK anda tidak terdaftar di sistem');
-            return redirect('/');
+            return redirect()->back();
         }
     }
 
     public function actionlogout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect()->route('login');
     }
 }
